@@ -1,10 +1,12 @@
 package pl.bartlomiejstepien.pong;
 
+import pl.bartlomiejstepien.pong.game.PongGame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class MenuWindow extends JFrame
+public class MainMenuWindow extends JFrame
 {
     private static final Color BACKGROUND_COLOR = Color.decode("#222222");
     private static final Color FOREGROUND_COLOR = Color.GREEN;
@@ -14,7 +16,7 @@ public class MenuWindow extends JFrame
     private JPanel localMenuPanel;
     private JPanel onlineMenuPanel;
 
-    public MenuWindow()
+    public MainMenuWindow()
     {
         super("Pong");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -86,6 +88,7 @@ public class MenuWindow extends JFrame
         playerVsPlayerButton.setPreferredSize(new Dimension(200, 30));
         playerVsPlayerButton.setBackground(BACKGROUND_COLOR);
         playerVsPlayerButton.setForeground(FOREGROUND_COLOR);
+        playerVsPlayerButton.addActionListener(this::startGamePlayerVsPlayer);
 
         JButton backButton = new JButton("Back");
         backButton.addActionListener(this::showMainMenu);
@@ -98,6 +101,20 @@ public class MenuWindow extends JFrame
         this.localMenuPanel.add(playerVsPlayerButton);
         this.localMenuPanel.add(Box.createVerticalStrut(20));
         this.localMenuPanel.add(backButton);
+    }
+
+    private void startGamePlayerVsPlayer(ActionEvent actionEvent)
+    {
+        PongGame pongGame = new PongGame();
+        JFrame frame = new JFrame("PONG");
+//        frame.setPreferredSize(new Dimension(800, 600));
+//        frame.setMaximumSize(new Dimension(800, 600));
+//        frame.setMinimumSize(new Dimension(800, 600));
+        frame.setContentPane(pongGame);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.pack();
+        new Thread(pongGame).start();
     }
 
     private void setupOnlineMenu()

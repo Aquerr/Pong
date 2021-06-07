@@ -7,9 +7,9 @@ public class Pong
 
     public static void main(String[] args)
     {
-        MenuWindow menuWindow = new MenuWindow();
-        menuWindow.setVisible(true);
-        menuWindow.pack();
-        menuWindow.setVisible(true);
+        MainMenuWindow mainMenuWindow = new MainMenuWindow();
+        mainMenuWindow.setVisible(true);
+        mainMenuWindow.pack();
+        mainMenuWindow.setVisible(true);
     }
 }
